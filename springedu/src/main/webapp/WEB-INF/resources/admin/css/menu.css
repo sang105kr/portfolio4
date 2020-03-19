@@ -1,0 +1,43 @@
+@charset "utf-8";
+
+nav{
+  font-size: 0.875em; /* 14px */
+}  
+/* 1depth 메뉴 */
+
+nav > .mycontainer-n > ul > li {
+  float: left;
+}
+nav > .mycontainer-n > ul > li > a{
+  display:block;       /* a요소의 크기 지정 */
+  padding: 10px 40px;  /* y축 x축 */
+  font-weight: 700;
+  background-color: #000000;
+  color:#fff;
+}
+nav > .mycontainer-n > ul > li:hover > a,    /* 마우스 위로가져갔을때 */
+nav > .mycontainer-n > ul > li:active > a{   /* 마우스 클릭했을때 */
+  color:#ff0;
+}
+/* 2depth 메뉴 */
+nav > .mycontainer-n ul ul {
+  display:none;   /* 2depth메뉴 숨기기 */
+  position: absolute;
+  box-shadow: 5px 5px 2px rgba(0,0,0,.3);
+}
+nav > .mycontainer-n ul ul a {
+  display: block;
+  padding: 0px 35px 0px 40px;
+  line-height: 30px;
+  font-weight: 400;   /* 기본 굵기 */
+  background-color: #fff;
+  color: #666;
+  transition: all .3s;
+}
+nav > .mycontainer-n ul ul a:hover,  /* 마우스 위로가져갔을때 */
+nav > .mycontainer-n ul ul a:focus{ /* tab키 눌렀을때 */
+  background-color: #f4f4f4;
+}
+nav > .mycontainer-n > ul > li:hover ul{
+  display:block;
+}
