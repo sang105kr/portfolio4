@@ -45,13 +45,15 @@
     	font-size: 0.825rem;
     }
   </style>
+	<script src="${pageContext.request.contextPath }/webjars/ckeditor4/4.13.1/ckeditor.js" ></script>  
 	<script src="<c:url value='/resources/js/common.js' />"></script>
   <script>
 		window.addEventListener("load",init, false);
-		var editor = null;
+		var myEditor;
 		function init(){
-			
+			myEditor = CKEDITOR.replace( 'bcontent' );
 			changeMode(false);
+
 			
 			let modifyBtn = document.getElementById('modifyBtn');
 			let deleteBtn = document.getElementById('deleteBtn');
@@ -70,6 +72,7 @@
 					e.preventDefault();
 					//console.log("수정");
 					changeMode(true);
+					myEditor.setReadOnly(false);
 				},false);
       }
       //삭제
@@ -91,6 +94,7 @@
 				e.preventDefault();
 				console.log("취소");
 				changeMode(false);
+				myEditor.setReadOnly(true);
 			},false);
       //저장	
 			saveBtn.addEventListener("click",function(e){
@@ -150,35 +154,39 @@
 				  xhttp.send();
 				},false);  
 			}
+			//읽기 모드 , 수정모드
+			function changeMode(flag){						
+					let rmodes = document.getElementsByClassName("rmode");
+					let umodes = document.getElementsByClassName("umode");
+					
+				//수정모드	
+				if(flag){
+
+					//제목변경 => 게시글 보기
+					document.getElementById("title").textContent = '게시글 수정';
+					//분류,필드 제목,내용 필드
+					document.getElementById("boardCategoryVO.cid").removeAttribute("disabled");			
+					document.getElementById("btitle").removeAttribute("readOnly");			
+					document.getElementById("bcontent").removeAttribute("readOnly");			
+					//수정모드버튼 활성화
+					Array.from(rmodes).forEach(e=>{e.style.display="none";});
+					Array.from(umodes).forEach(e=>{e.style.display="block";});
+				//읽기모드	
+				}else{
+
+					//제목변경 => 게시글 보기
+					document.getElementById("title").textContent = '게시글 보기';
+					//분류,필드 제목,내용 필드
+					document.getElementById("boardCategoryVO.cid").setAttribute("disabled",true);						
+					document.getElementById("btitle").setAttribute("readOnly",true);
+					document.getElementById("bcontent").setAttribute("readOnly",true);	
+					//읽기모드버튼 활성화				
+					Array.from(rmodes).forEach(e=>{e.style.display="block";});
+					Array.from(umodes).forEach(e=>{e.style.display="none";});
+				}			
 		}
 
-		//읽기 모드 , 수정모드
-		function changeMode(flag){						
-				let rmodes = document.getElementsByClassName("rmode");
-				let umodes = document.getElementsByClassName("umode");
-			//수정모드	
-			if(flag){
-				//제목변경 => 게시글 보기
-				document.getElementById("title").textContent = '게시글 수정';
-				//분류,필드 제목,내용 필드
-				document.getElementById("boardCategoryVO.cid").removeAttribute("disabled");			
-				document.getElementById("btitle").removeAttribute("readOnly");			
-				document.getElementById("bcontent").removeAttribute("readOnly");			
-				//수정모드버튼 활성화
-				Array.from(rmodes).forEach(e=>{e.style.display="none";});
-				Array.from(umodes).forEach(e=>{e.style.display="block";});
-			//읽기모드	
-			}else{
-				//제목변경 => 게시글 보기
-				document.getElementById("title").textContent = '게시글 보기';
-				//분류,필드 제목,내용 필드
-				document.getElementById("boardCategoryVO.cid").setAttribute("disabled",true);						
-				document.getElementById("btitle").setAttribute("readOnly",true);
-				document.getElementById("bcontent").setAttribute("readOnly",true);	
-				//읽기모드버튼 활성화				
-				Array.from(rmodes).forEach(e=>{e.style.display="block";});
-				Array.from(umodes).forEach(e=>{e.style.display="none";});
-			}
+
 		}
   </script>
 </head>
@@ -229,7 +237,7 @@
 				        <form:errors path="btitle"/>
 					    </div>
 					    <div class="row">
-					      <label class="col-1" path="bid" >작성자</label>
+					      <form:label class="col-1" path="bid" >작성자</form:label>
 					      <p><span>${boardVO.bnickname }(${boardVO.bid })</span></p>
 					    </div>
 					    <div class="row">

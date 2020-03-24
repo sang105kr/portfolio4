@@ -30,10 +30,16 @@
     #frm .row .row.btns{ display:flex; justify-content: flex-end; }
     #frm .row .btn { width:10%; }
   </style>
+	<script src="${pageContext.request.contextPath }/webjars/ckeditor4/4.13.1/ckeditor.js" ></script>
 	<script src="<c:url value='/resources/js/common.js' />"></script>
   <script>
 		window.addEventListener("load",init, false);
+		var myEditor;
 		function init(){
+
+			 myEditor = CKEDITOR.replace( 'bcontent' );
+			 myEditor.config.width="80%";
+			 
 			//등록버튼 클릭시
 			writeBtn.addEventListener("click",function(e){
 				e.preventDefault();
