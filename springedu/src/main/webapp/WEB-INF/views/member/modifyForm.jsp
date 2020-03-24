@@ -13,6 +13,14 @@
   <link rel="stylesheet" href="<c:url value='/resources/css/memberModify.css' />">
   <script src="<c:url value='/resources/js/common.js' />"></script> 
   <script src="<c:url value='/resources/js/memberModify.js' />"></script>
+  <script>
+		window.addEventListener("load",init,false);
+		function init(){
+			let url = "data:${mvo.ftype };base64,${profileImg }";
+			document.getElementsByClassName("pic")[0].style.backgroundImage = 'url('+url+')';
+			document.getElementsByClassName("pic")[0].style.backgroundSize = "300px 200px";
+		}
+  </script>
 </head>
 <body>
   <form:form id="joinFrm" enctype="multipart/form-data"
@@ -21,8 +29,10 @@
     <div class="mycontainer">
       <div class="content">
         <div><h2 class="join-title">회 원 정 보 수 정</h2></div>
-        <div><form:label path="file">프로필사진</form:label></div>
-        <div class="content"><img src="#" alt="프로필사진"/></div>
+        <div><form:label path="file">프로필사진</form:label>
+        		 <form:input path="file" cssStyle="display:none;"/>
+        </div>
+        <div class="pic"></div>
         <div>
         	<span class="errmsg" id="file_errmsg"></span>
         	<form:errors path="file" cssClass="errmsg"></form:errors>

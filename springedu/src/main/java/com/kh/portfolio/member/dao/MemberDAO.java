@@ -32,6 +32,9 @@ public interface MemberDAO {
 	
 	//비밀번호 변경
 	int changePW(String id, String pw);
+	
+	//프로파일 이미지 조회
+	byte[] fileView(String id);			
 }
 
 

@@ -1,9 +1,10 @@
 window.addEventListener("load",init,false);
+let profileImage = null;
 function init(){
-	let profileImage = null;
-  modifyBtn.addEventListener("click",function(e){
+
+	modifyBtn.addEventListener("click",function(e){
     e.preventDefault();
-//    document.getElementById("joinFrm").submit();
+
     if(checkValid()){
       // 유효성 통과하면 메인화면으로 이동
       //location.href="main.html";
@@ -13,21 +14,20 @@ function init(){
       let request = new XMLHttpRequest();
       let formData = new FormData(document.getElementById("joinFrm"));
       formData.append("file",profileImage);
-      console.log("formData="+formData.file);
       request.open("POST", getContextPath()+"/member/modify");
       request.send(formData);      
     }
   },false);
   
   //사진 드래그 앤 드롭
-  let content =document.getElementsByClassName("content")[0];
-  content.addEventListener("dragover",function(e){ 
+  let pic =document.getElementsByClassName("pic")[0];
+  pic.addEventListener("dragover",function(e){ 
     return dragOver(e);
   },false);
-  content.addEventListener("dragleave",function(e){
+  pic.addEventListener("dragleave",function(e){
     return dragOver(e);
   },false);
-  content.addEventListener("drop",function(e){
+  pic.addEventListener("drop",function(e){
     return uploadFiles(e);
   },false); 
 }
@@ -56,13 +56,17 @@ function uploadFiles(e) {
       alert('이미지는 하나만 첨부하세요');
       return;
   }
+  //100kb미만의 이미지만 첨부
+  if(files[0].size > 1024*100){
+  	alert('100kb 미만의 이미지만 첨부 가능합니다');
+  	return;
+  }
 
   let reg = /image\/\/*/;
   if (files[0].type.match(reg)) {
     e.target.style.backgroundImage = "url(" + window.URL.createObjectURL(files[0]) + ")";
     e.target.style.outline = "none";
     e.target.style.backgroundSize = "100% 100%";
-    
     profileImage = files[0];
   }else{
     alert('이미지가 아닙니다.');

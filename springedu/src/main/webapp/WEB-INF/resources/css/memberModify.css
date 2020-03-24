@@ -41,15 +41,16 @@ select{ width:270px;}
 .errmsg { color:red; font-size:0.7rem; font-weight:bold; }
 
 /*사진 첨부*/
-.content div:nth-child(3){
+.content .pic{
     outline: 2px dashed #92b0b3 ;
     outline-offset:-10px;  
     text-align: center;
     transition: all .15s ease-in-out;
-    //width: 300px;
-    min-height: 200px;
+    min-width: 300px;
+    min-height: 200px;  
     background-color: gray;
     padding:10px;
 }
+
 
 

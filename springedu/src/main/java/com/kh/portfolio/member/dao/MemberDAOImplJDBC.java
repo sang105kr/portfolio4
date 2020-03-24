@@ -203,4 +203,9 @@ public class MemberDAOImplJDBC implements MemberDAO {
 		};
 		return rowMapper;
 	}
+	@Override
+	public byte[] fileView(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

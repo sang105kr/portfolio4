@@ -1,6 +1,7 @@
 package com.kh.portfolio.member.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,6 +10,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.apache.commons.codec.binary.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -103,7 +105,13 @@ public class MemberController {
 		logger.info("memberVO:" + memberVO);
 		//비밀번호 제거
 		memberVO.setPw(null);
-		model.addAttribute("mvo", memberVO);		
+		model.addAttribute("mvo", memberVO);	
+		//이미지를 base64로 변환후 img태그에 적용
+		if(memberVO.getPic() != null) {
+			byte[] encoded = Base64.encodeBase64(memberVO.getPic());
+			logger.info("profileImg="+Arrays.toString(encoded));
+			model.addAttribute("profileImg",new String(encoded));
+		}
 		
 		return "member/modifyForm";
 	}
@@ -130,6 +138,7 @@ public class MemberController {
 		//세션정보 수정
 		session.removeAttribute("member");	
 		session.setAttribute("member", memberVO);	
+	
 		return "redirect:/member/modifyForm/"+memberVO.getId();
 	}	
 	//회원 탈퇴양식
@@ -239,6 +248,28 @@ public class MemberController {
 		}
 		return res;
 	}
+	
+	//첨부파일 다운로드
+//	@GetMapping("/file/{id}")
+//	public ResponseEntity<byte[]> getFile(@PathVariable String id) {
+//		MemberVO memberVO = memberSVC.fileView(id);
+//		logger.info("getFile " + memberVO.toString());
+//		
+//		final HttpHeaders headers = new HttpHeaders();
+//		String[] mtypes = memberVO.getFtype().split("/");
+//		headers.setContentType(new MediaType(mtypes[0], mtypes[1]));
+//		headers.setContentLength(memberVO.getFsize());
+//		/* 첨부파일명이 한글일경우 깨짐 방지 */ 
+//		String filename = null;
+//		try {
+//			filename = new String(memberVO.getFname().getBytes("euc-kr"), "ISO-8859-1");
+//		} catch (UnsupportedEncodingException e) {
+//			e.printStackTrace();
+//		}
+//		headers.setContentDispositionFormData("attachment", filename);
+//		/***************************/
+//		return new ResponseEntity<byte[]>(memberVO.getFile(), headers,	HttpStatus.OK);
+//	}		
 }
 
 

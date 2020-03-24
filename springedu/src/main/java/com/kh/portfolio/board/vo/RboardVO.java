@@ -30,4 +30,8 @@ public class RboardVO {
 	
 	//공개투표시 사용
 	//List<VoteVO> voteList;
+	
+	//프로파일 이미지
+	private String ftype;					//파일타입
+	private byte[] pic;						//첨부파일
 }

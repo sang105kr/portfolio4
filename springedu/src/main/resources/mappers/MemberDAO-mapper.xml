@@ -19,6 +19,10 @@
 					 gender = #{gender},
 					 region = #{region},
 					 birth = #{birth},
+					 pic = #{pic},
+					 fsize = #{fsize},
+					 ftype = #{ftype},
+					 fname = #{fname},
 					 udate = systimestamp
 		 where id = #{id}
 </update>
@@ -26,7 +30,7 @@
 <select id="selectAllMember"
 				resultType="MemberVO">
 		SELECT id,  		pw,  		tel,  	nickname,  gender, 
-		       region,  birth,  cdate,  udate 
+		       region,  birth,  cdate,  udate, pic, fsize, ftype, fname
 		  FROM member 
 </select>
 <!-- 회원 개별조회 -->
@@ -34,7 +38,7 @@
 				parameterType="string"
 				resultType="MemberVO">
 		SELECT id,  		pw,  		tel,  	nickname,  gender, 
-		       region,  birth,  cdate,  udate 
+		       region,  birth,  cdate,  udate , pic, fsize, ftype, fname
 		  FROM member    
 		 where id = #{id} 
 </select>
@@ -73,9 +77,5 @@
 		 where id=#{id} and tel=#{tel} and birth=#{birth}
 </select> 
 </mapper>
-
-
-
-
 
 

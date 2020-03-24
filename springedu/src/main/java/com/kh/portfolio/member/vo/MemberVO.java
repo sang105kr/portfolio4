@@ -40,5 +40,9 @@ public class MemberVO {
 	
 	//회원 이미지 첨부용
 	private MultipartFile file;
-	private byte[] pic;					//첨부파일	
+	private String fname;					//파일명
+	private long fsize;						//파일크기
+	private String ftype;					//파일타입
+	private byte[] pic;						//첨부파일
+	
 }

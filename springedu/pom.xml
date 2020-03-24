@@ -242,6 +242,14 @@
 			<version>1.4</version>
 		</dependency>
 		<!-- 파일 업로드 끝 -->
+		<!-- 이미지를 base64로 변환후 img태그에 적용 -->
+		<!--base64는 임의의 바이트 스트림을 화면에 표시할 수 있는 ASCII 문자들로 바꾸는 인코딩 방식-->
+		<dependency>
+		    <groupId>commons-codec</groupId>
+		    <artifactId>commons-codec</artifactId>
+		    <version>1.14</version>
+		</dependency>
+		
 		<!-- 어노테이션을 사용해서 DTO,VO등의 객체에 setter,getter,constructor등을 자동생성 -->
 		<dependency>
 		    <groupId>org.projectlombok</groupId>

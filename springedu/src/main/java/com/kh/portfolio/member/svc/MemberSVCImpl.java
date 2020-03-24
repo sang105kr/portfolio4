@@ -1,5 +1,6 @@
 package com.kh.portfolio.member.svc;
 
+import java.io.IOException;
 import java.sql.Date;
 import java.util.List;
 
@@ -34,6 +35,20 @@ public class MemberSVCImpl implements MemberSVC{
 	@Override
 	public int modifyMember(MemberVO memberVO) {
 		logger.info("MemberSVCImpl.modifyMember(MemberVO memberVO) 호출됨");
+		try {
+			if(memberVO.getFile().getSize() > 0 ) {
+				//첨부파일
+				memberVO.setPic(memberVO.getFile().getBytes());
+				//첨부파일 크기
+				memberVO.setFsize(memberVO.getFile().getSize());
+				//첨부파일 타입
+				memberVO.setFtype(memberVO.getFile().getContentType());		
+				//첨부파일명
+				memberVO.setFname(memberVO.getFile().getName());
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		return memberDAO.modifyMember(memberVO);
 	}
 	//회원 전체조회
@@ -77,6 +92,12 @@ public class MemberSVCImpl implements MemberSVC{
 	public int findPW(MemberVO memberVO) {
 		logger.info("MemberSVCImpl.findPW(MemberVO memberVO) 호출됨");
 		return memberDAO.findPW(memberVO);
+	}
+	//프로파일 이미지 조회
+	@Override
+	public byte[] fileView(String id) {
+		logger.info("MemberSVCImpl.fileView(String id) 호출됨");
+		return memberDAO.fileView(id);
 	}
 
 }

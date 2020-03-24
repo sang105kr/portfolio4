@@ -89,6 +89,12 @@ public class MemberDAOImplXML implements MemberDAO {
 		logger.info("MemberDAOImplXML.findPW(MemberVO memberVO) 호출됨!");
 		return sqlSession.selectOne("mappers.MemberDAO-mapper.findPW", memberVO);
 	}
+	//프로파일 이미지 가져오기
+	@Override
+	public byte[] fileView(String id) {
+		logger.info("MemberDAOImplXML.finfileViewdPW(String id) 호출됨!");
+		return sqlSession.selectOne("mappers.MemberDAO-mapper.fileView", id);
+	}
 }
 
 

@@ -58,6 +58,9 @@
     #replyList .row.header div {
     	padding: 1px 3px;
     }
+    #replyList img{
+  		border-radius: 50%;
+    }
     /* 페이징 */
     #paging {
       margin-top:20px;
@@ -407,14 +410,15 @@
 /* 						console.log("rnum="+e.rnum);
 						console.log("rid="+e.rid);
 						console.log("rnickname="+e.rnickname); */
-
+						//let url = null;
 						str += '<div class="row pw-10" data-rnum="'+e.rnum+'" >';
 						if(e.rindent == 0){
 							str += '  <div class="row pw-10">';
 						}else{
 							str += '  <div class="row pw-10 lm-7">';
 						}
-						str += '    <div class="col fw-7"><img src="" alt="사진" /></div>';
+						str += '    <div class="col fw-7"><img src="data:'+e.ftype+';base64,'+e.pic+'" alt="사진" width="60px"/></div>';
+						/*str += '    <div class="col fw-7"><img src="" alt="사진" /></div>';*/
 						str += '    <div class="col pw-10">';
 						str += '      <div class="row header pw-10">';
 						str += '        <div class="col fw-15">';

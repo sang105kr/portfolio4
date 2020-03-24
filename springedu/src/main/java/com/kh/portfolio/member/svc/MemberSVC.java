@@ -3,6 +3,7 @@ package com.kh.portfolio.member.svc;
 import java.sql.Date;
 import java.util.List;
 
+import com.kh.portfolio.board.vo.BoardFileVO;
 import com.kh.portfolio.member.vo.MemberVO;
 
 public interface MemberSVC {
@@ -32,4 +33,7 @@ public interface MemberSVC {
 	
 	//비밀번호 변경
 	int changePW(String id, String pw);
+	
+	//프로파일 이미지 조회
+	byte[] fileView(String id);		
 }
