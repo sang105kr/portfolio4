@@ -1,5 +1,5 @@
-window.addEventListener("load",init,false);
-let profileImage = null;
+ window.addEventListener("load",init,false);
+//let profileImage = null;
 function init(){
 
 	modifyBtn.addEventListener("click",function(e){
@@ -8,14 +8,15 @@ function init(){
     if(checkValid()){
       // 유효성 통과하면 메인화면으로 이동
       //location.href="main.html";
+    	if(confirm('수정하시겠습니까?')){
+    		document.getElementById("joinFrm").submit();
+    	}
     	
-      //document.getElementById("joinFrm").submit();
-    	
-      let request = new XMLHttpRequest();
-      let formData = new FormData(document.getElementById("joinFrm"));
-      formData.append("file",profileImage);
-      request.open("POST", getContextPath()+"/member/modify");
-      request.send(formData);      
+//      let request = new XMLHttpRequest();
+//      let formData = new FormData(document.getElementById("joinFrm"));
+//      formData.append("file",profileImage);
+//      request.open("POST", getContextPath()+"/member/modify");
+//      request.send(formData);      
     }
   },false);
   
@@ -67,7 +68,8 @@ function uploadFiles(e) {
     e.target.style.backgroundImage = "url(" + window.URL.createObjectURL(files[0]) + ")";
     e.target.style.outline = "none";
     e.target.style.backgroundSize = "100% 100%";
-    profileImage = files[0];
+    //profileImage = files[0];
+    document.getElementById("file").files = files;
   }else{
     alert('이미지가 아닙니다.');
     return;

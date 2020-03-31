@@ -3,7 +3,9 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+	xmlns:websocket="http://www.springframework.org/schema/websocket"
+	xsi:schemaLocation="http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket-4.3.xsd
+		http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
@@ -50,7 +52,7 @@
 		<beans:property name="defaultEncoding" value="utf-8" />
 	</beans:bean>
 	
-	
+
 	<!-- component : @Controller, @Service, @Repository 중에서
 	                 @Controller가 있는 클래스만 인스턴스화 하도록 설정함 -->
 	<context:component-scan base-package="com.kh.portfolio" 
@@ -60,4 +62,21 @@
 		<context:include-filter type="annotation" 
 		                        expression="org.springframework.web.bind.annotation.ControllerAdvice"/>                        												
 	</context:component-scan>
+	
+	<!-- sse -->
+	<view-controller path="/sse/stock" view-name="sse/stock"/>
+	<view-controller path="/sse/stockServer" view-name="sse/stockServer"/>
+	
+	
+	<view-controller path="/sse/memorymonitor" view-name="sse/memorymonitor"/>	
+	<view-controller path="/sse/display" view-name="sse/display" />
+	<view-controller path="/websocket/display" view-name="websocket/display" />
+	
+	<!-- websocket -->
+	<websocket:handlers>
+		<websocket:mapping path="/websocket/memorymonitor" handler="memorymonitorHandler" />
+	</websocket:handlers>
+	<beans:bean id="memorymonitorHandler" 
+							class="com.kh.portfolio.websocket.handler.MemoryMonitorHandler"/>
+							
 </beans:beans>

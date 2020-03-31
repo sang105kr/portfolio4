@@ -41,13 +41,33 @@
 			<version>${org.springframework-version}</version>
 		</dependency>
 
+		<!-- AOP 의존성 시작 -->
 		<!-- AspectJ -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjrt</artifactId>
 			<version>${org.aspectj-version}</version>
 		</dependency>
-
+		<dependency>
+		    <groupId>org.aspectj</groupId>
+		    <artifactId>aspectjweaver</artifactId>
+		    <version>${org.aspectj-version}</version>
+		</dependency>
+		<!-- spring aop -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-aop</artifactId>
+		    <version>${org.springframework-version}</version>
+		</dependency>
+		<!-- AOP 의존성 끝 -->
+		
+		<!-- Spring WebSocket -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-websocket</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+				
 		<!-- Logging -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -59,8 +79,9 @@
 			<groupId>org.slf4j</groupId>
 			<artifactId>jcl-over-slf4j</artifactId>
 			<version>${org.slf4j-version}</version>
-			<scope>runtime</scope>
+<!-- 			<scope>runtime</scope> -->
 		</dependency>
+		
 		<!-- slf4j구현 클래스로 log4j를 사용하겠다는의미  -->		
 <!-- 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -194,6 +215,7 @@
 			<!-- <scope>test</scope> -->
 		</dependency>
 		<!-- JUnit 끝 -->
+		
 		<!-- Spring-test 시작 -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -220,6 +242,7 @@
 		    <artifactId>log4j-core</artifactId>
 		    <version>2.13.0</version>
 		</dependency>		
+		
 		<!-- 데이터 포맷 변환 시작 -->
 		<!-- json 포맷을 java객체로 변환 or java객체를 json포맷으로 변환 -->
 		<dependency>
@@ -299,11 +322,31 @@
 		</dependency>			
 		<!-- Bootstrap : css 프레임웍 끝 -->
 		
+		<!-- ckeditor -->
 		<dependency>
 		    <groupId>org.webjars.npm</groupId>
 		    <artifactId>ckeditor4</artifactId>
 		    <version>4.13.1</version>
 		</dependency>		
+		
+		<!-- mail 시작-->
+		<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-context-support</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+		<dependency>
+	    <groupId>javax.mail</groupId>
+	    <artifactId>javax.mail-api</artifactId>
+	    <version>1.6.2</version>
+		</dependency>
+		<dependency>
+	    <groupId>com.sun.mail</groupId>
+	    <artifactId>javax.mail</artifactId>
+	    <version>1.6.2</version>
+		</dependency>
+		<!-- mail 끝-->
+		
 	</dependencies>
 	<build>
 		<plugins>

@@ -30,7 +30,7 @@
       <div class="content">
         <div><h2 class="join-title">회 원 정 보 수 정</h2></div>
         <div><form:label path="file">프로필사진</form:label>
-        		 <form:input path="file" cssStyle="display:none;"/>
+        		 <form:input path="file" type="file" cssStyle="display:none;"/>
         </div>
         <div class="pic"></div>
         <div>

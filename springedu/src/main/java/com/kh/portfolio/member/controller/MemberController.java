@@ -111,7 +111,7 @@ public class MemberController {
 			byte[] encoded = Base64.encodeBase64(memberVO.getPic());
 			logger.info("profileImg="+Arrays.toString(encoded));
 			model.addAttribute("profileImg",new String(encoded));
-		}
+		} 
 		
 		return "member/modifyForm";
 	}
@@ -139,7 +139,8 @@ public class MemberController {
 		session.removeAttribute("member");	
 		session.setAttribute("member", memberVO);	
 	
-		return "redirect:/member/modifyForm/"+memberVO.getId();
+		return "redirect:/";
+		//return "redirect:/member/modifyForm/"+memberVO.getId();
 	}	
 	//회원 탈퇴양식
 	@GetMapping("/outForm")

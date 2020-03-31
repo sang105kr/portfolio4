@@ -50,6 +50,25 @@ public class HomeController {
 	public String rereplyForm() {
 		return "/board/rereply";
 	}
+	
+//	@GetMapping("/sse/display")
+//	public String display() {
+//		return "/sse/display";
+//	}
+//	@GetMapping("/sse/memorymonitor")
+//	public String memorymonitor() {
+//		return "/sse/memorymonitor";
+//	}
+	
+	
+//	@GetMapping("/sse/stock")
+//	public String stock() {
+//		return "/sse/stock";
+//	}
+//	@GetMapping("/sse/stockServer")
+//	public String stockServer() {
+//		return "/sse/stockServer";
+//	}
 }
 
 
